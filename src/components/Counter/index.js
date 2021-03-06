@@ -1,6 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export class Counter extends React.Component {
+export function Counter(props) {
+    const [value, setValue] = useState(props.start || 0);
+
+    return (
+        <div>
+            <button onClick={() => setValue(value - 1)}>-</button>
+            {value}
+            <button onClick={() => setValue(value + 1)}>+</button>
+        </div>
+    );
+}
+
+export class _Counter extends React.Component {
     constructor(props) {
         super(props);
 
