@@ -11,19 +11,13 @@ function App(props) {
       <Header title="Hello from Header component" />
       <Counter start={10} />
       <Counter />
-      {/* <CollapseText toggleText="Open/Close">
-        <div>
-          Hello from div1
-        </div>
-        <div>
-          Hello from div2
-        </div>
-      </CollapseText> */}
+      <CollapseText toggleText="Open/Close">
+        <TimeCounter />
+      </CollapseText>
       {/* <CollapseText>
         Goodbye
       </CollapseText> */}
 
-      <TimeCounter />
     </div>
   );
 }

@@ -15,6 +15,18 @@ export class TimeCounter extends React.Component {
         };
     }
 
+    componentDidMount() {
+        console.log('mounted');
+    }
+
+    componentDidUpdate() {
+    }
+
+    componentWillUnmount() {
+        this.reset();
+        console.log('before unmounting');
+    }
+
     render() {
         return (
             <div className="timer">

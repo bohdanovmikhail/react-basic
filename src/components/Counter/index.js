@@ -24,6 +24,11 @@ export class _Counter extends React.Component {
         this.decrement = this.decrement.bind(this);
     }
 
+    
+    componentDidMount() {
+
+    }
+
     render() {
         return (
             <div>
