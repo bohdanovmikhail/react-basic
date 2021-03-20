@@ -1,34 +1,37 @@
 import { connect } from 'react-redux';
 
-import { Header } from './components/Header';
-import { Counter } from './components/Counter';
-
 import './App.css';
-import { CollapseText } from './components/CollapseText';
-import { TimeCounter } from './components/TimeCounter';
-import Counter2 from './components/Counter2';
+import { inputChange, inputClear } from './store/inputData/actions';
+import { usersLoad } from './store/users/actions';
 
 function App(props) {
   return (
     <div className="App">
-      <div>Counter Data: {props.counterData}</div>
-      <Counter2 />
-      {/* <Header title="Hello from Header component" /> */}
-      {/* <Counter start={10} /> */}
-      {/* <Counter /> */}
-      {/* <CollapseText toggleText="Open/Close">
-        <TimeCounter />
-      </CollapseText> */}
-      {/* <CollapseText>
-        Goodbye
-      </CollapseText> */}
+      <div>{props.inputValue}</div>
+      <input
+        value={props.inputValue}
+        onChange={event => props.change(event.target.value)}
+      />
 
+      <button onClick={props.clear}>Clear input</button>
+      <button onClick={props.load}>Load users</button>
     </div>
   );
 }
 
 const mapState = state => ({
-  counterData: state.counter,
+  inputValue: state.inputData,
 });
 
-export default connect(mapState)(App);
+// const mapDispatch = dispatch => ({
+//   change: value => dispatch(inputChange(value)),
+//   clear: () => dispatch(inputClear()),
+// });
+
+const mapDispatchObj = {
+  change: inputChange,
+  clear: inputClear,
+  load: usersLoad,
+};
+
+export default connect(mapState, mapDispatchObj)(App);

@@ -1,26 +1,12 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import { createLogger } from 'redux-logger';
+import reduxThunk from 'redux-thunk';
+import { rootReducer } from './rootReducer';
 
-const defaultState = {
-    counter: 1,
-};
+const logger = createLogger({
+    collapsed: true,
+});
 
-function rootReducer(state = defaultState, action) {
-    switch (action.type) {
-        case 'INCREMENT':
-            return {
-                ...state,
-                counter: state.counter + 1,
-            };
+const middleware = applyMiddleware(reduxThunk, logger);
 
-        case 'DECREMENT':
-            return {
-                ...state,
-                counter: state.counter - 1,
-            };
-
-        default:
-            return state;
-    }
-}
-
-export const store = createStore(rootReducer);
+export const store = createStore(rootReducer, middleware);
